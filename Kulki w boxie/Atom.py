@@ -1,5 +1,5 @@
 class Atom:
-
+    # zmiana poprzez gita 03.12 <-
     # x, y, m, r
     def __init__(self, id, x, y, m=1, r=1):
 
