@@ -12,7 +12,8 @@ class Coords:
 
         # atomy = list(len(slownik_wszystkich_atomow['id']) * [None])
         atomy = list(len(slownik_wszystkich_atomow['id']) * [None])
-        print(atomy)
+        # print(atomy)
+        # print(len(atomy))
         for i in range(len(slownik_wszystkich_atomow['id'])):
             potrzebne_do_stworzenia_atomu = (slownik_wszystkich_atomow["id"][i],
                                              slownik_wszystkich_atomow["x"][i],
@@ -21,10 +22,17 @@ class Coords:
                                              slownik_wszystkich_atomow["m"][i])
 
             # Tu tworzymy atomy z konstruktora
+            # atomy[i] = Atom(*potrzebne_do_stworzenia_atomu)
+
             atomy[i] = Atom(*potrzebne_do_stworzenia_atomu)
         # print(atomy)
 
-        print(atomy)
+        # print(atomy)
+        # print(atomy[0].get_position)
+        # atomy[0] = Atom(*(None, None, None, None, None))
+        # print(atomy[0].get_position)
+
+        # self.atomy = atomy
         self.__atomy = atomy
 
     @staticmethod
@@ -60,29 +68,40 @@ class Coords:
 
         return slownik
 
-    def __str__(self):
+    @property
+    def get_list_of_atoms(self):
+        return self.__atomy
 
-        # Atom str
-        return f"Atom\\ID:{self.__id}, X:{self.__x}, Y:{self.__y}"
+    def __getitem__(self, key):
+        return self.__atomy[key]
+
+    def __str__(self):
+        return f"{self.get_list_of_atoms}"
 
     def get_position(self):
-        ...
+        pass
 
     # do zrobienia
-    def ITERATOR(self):
-        if ...:
-            ...
+    def __iter__(self):
+        lista_atomow = self.get_list_of_atoms
+        return iter(lista_atomow)
 
 
 if __name__ == "__main__":
-    Coords("drugi_przyklad")
-    # print(type(Coords("drugi_przyklad").__atomy))
-    # lista_atomow = Coords("drugi_przyklad").__atomy
-    # print(lista_atomow)
-    # print(type(lista_atomow))
-    # a1 = Coords("drugi_przyklad").atomy[0]
-    # print(a1)
-    # # print(a1.get_position())
-    # print("HOOH")
-    # print(Coords("drugi_przyklad"))
 
+    c1 = Coords("drugi_przyklad")
+
+    print(c1)
+    # print(
+    # Coords("drugi_przyklad").get_list_of_atoms
+    # )
+    #
+    # print("siema")
+    # print(c1[0], c1[-1])
+    #
+    # atom0 = c1[0]
+    # atom_ostatni = c1[-1]
+    # atom0 = c1[0]
+
+    for i in c1:
+        print(i)
